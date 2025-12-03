@@ -1,0 +1,12 @@
+{
+  "method": "variance_correlation",
+  "description": "Variance (threshold=0.01) + Correlation (threshold=0.9)",
+  "original_features": 93,
+  "selected_features": 69,
+  "reduction_percentage": 25.806451612903224,
+  "variance_threshold": 0.01,
+  "correlation_threshold": 0.9,
+  "pca_variance_retained": null,
+  "pca_explained_variance": null,
+  "removed_features_count": 24
+}

@@ -1,0 +1,178 @@
+# Project Configuration
+project:
+  name: "Diabetes Clustering"
+  author: "Novan"
+  version: "1.0.0"
+  description: "Multi-Perspective Ensemble Deep Clustering for Diabetes Patient Stratification"
+
+# Paths
+paths:
+  data_raw: "data/raw/"
+  data_processed: "data/processed/"
+  models: "models/saved_models/"
+  reports: "reports/"
+  figures: "reports/figures/"
+  mlflow_tracking: "experiments/mlruns/"
+
+# Data Configuration
+data:
+  dataset_name: "diabetic_data.csv"
+  dataset_url: "https://archive.ics.uci.edu/ml/machine-learning-databases/00296/diabetes+130-US+hospitals+for+years+1999-2008.csv"
+  target_column: "readmitted"
+  patient_id: "patient_nbr"
+
+  # Train/Val/Test Split
+  split:
+    train_size: 0.7
+    val_size: 0.15
+    test_size: 0.15
+    random_state: 42
+    stratify: true
+
+# Preprocessing Configuration
+preprocessing:
+  missing_threshold: 0.5 # Drop columns with >50% missing
+  outlier_method: "iqr" # iqr, zscore, isolation_forest
+  outlier_threshold: 3.0
+
+  scaling:
+    clinical: "standard" # standard, minmax, robust
+    treatment: "minmax"
+    administrative: "robust"
+
+  encoding:
+    categorical: "onehot" # onehot, label, target
+    high_cardinality_threshold: 10 # Use target encoding if >10 unique values
+
+# Feature Engineering
+features:
+  clinical_features:
+    - "time_in_hospital"
+    - "num_lab_procedures"
+    - "num_procedures"
+    - "num_medications"
+    - "number_outpatient"
+    - "number_emergency"
+    - "number_inpatient"
+    - "number_diagnoses"
+
+  treatment_features:
+    - "metformin"
+    - "repaglinide"
+    - "nateglinide"
+    - "chlorpropamide"
+    - "glimepiride"
+    - "glipizide"
+    - "glyburide"
+    - "pioglitazone"
+    - "rosiglitazone"
+    - "insulin"
+    - "change"
+    - "diabetesMed"
+
+  administrative_features:
+    - "admission_type_id"
+    - "discharge_disposition_id"
+    - "admission_source_id"
+    - "payer_code"
+
+  demographic_features:
+    - "race"
+    - "gender"
+    - "age"
+
+# VAE Configuration (Perspective 1: Clinical)
+vae:
+  architecture:
+    input_dim: null # Will be set automatically
+    hidden_dims: [128, 64]
+    latent_dim: 16
+    dropout: 0.2
+
+  training:
+    batch_size: 256
+    epochs: 100
+    learning_rate: 0.001
+    beta_start: 0.0 # For beta-VAE warm-up
+    beta_end: 1.0
+    beta_warmup_epochs: 20
+    early_stopping_patience: 15
+
+  clustering:
+    methods: ["kmeans", "gmm", "hdbscan"]
+    k_range: [3, 4, 5, 6, 7, 8]
+
+# Treatment Clustering Configuration (Perspective 2)
+treatment_clustering:
+  dimensionality_reduction:
+    method: "pca" # pca, umap
+    n_components: 10
+
+  clustering:
+    methods: ["kmeans", "hierarchical", "dbscan"]
+    k_range: [3, 4, 5, 6, 7, 8]
+    hierarchical_linkage: "ward"
+    dbscan_eps: 0.5
+    dbscan_min_samples: 5
+
+# Administrative Clustering Configuration (Perspective 3)
+administrative_clustering:
+  clustering:
+    methods: ["kmeans", "gmm", "hierarchical"]
+    k_range: [3, 4, 5, 6, 7, 8]
+
+# Consensus Mechanism
+consensus:
+  weighting_method: "adaptive" # uniform, adaptive, learned
+  confidence_threshold: 0.7
+  min_agreement: 0.5 # Minimum agreement between perspectives
+
+# Evaluation Metrics
+evaluation:
+  internal_metrics:
+    - "silhouette"
+    - "davies_bouldin"
+    - "calinski_harabasz"
+    - "dunn"
+
+  stability:
+    n_bootstrap: 100
+    bootstrap_ratio: 0.8
+
+  external_validation:
+    - "readmission_rate"
+    - "length_of_stay"
+    - "number_procedures"
+
+# MLflow Configuration
+mlflow:
+  experiment_name: "diabetes_clustering"
+  tracking_uri: "experiments/mlruns"
+  artifact_location: "experiments/mlruns"
+  run_name_prefix: "run"
+
+  log_params: true
+  log_metrics: true
+  log_artifacts: true
+  log_models: true
+
+# Visualization
+visualization:
+  style: "seaborn-v0_8-darkgrid"
+  context: "paper"
+  palette: "husl"
+  figure_size: [12, 8]
+  dpi: 300
+  save_format: ["png", "pdf"]
+
+# Reproducibility
+reproducibility:
+  seed: 42
+  deterministic: true
+  benchmark: false
+
+# Computational Resources
+compute:
+  device: "mps" # mps for M1, cuda for GPU, cpu for CPU
+  num_workers: 4
+  pin_memory: true

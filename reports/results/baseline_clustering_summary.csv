@@ -1,0 +1,5 @@
+Algorithm,Status,n_clusters,Silhouette,Davies-Bouldin,Calinski-Harabasz,Config,Runs,Noise_Ratio,BIC
+K-Means,Completed,2,0.2229595725180885,2.330145121184628,5026.192410967148,k=2,9,,
+DBSCAN,Completed,4,0.13978993811088689,1.6484594348472035,817.2047864112474,"eps=5.0, ms=50",25,25.9%,
+Hierarchical,Infeasible,N/A,N/A,N/A,N/A,Memory O(n²),0,,
+GMM,Completed,2,0.19117686107248236,3.118004133420856,4163.351128449551,"k=2, diag",36,,5880578.96

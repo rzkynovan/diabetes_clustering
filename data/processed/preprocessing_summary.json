@@ -1,0 +1,149 @@
+{
+  "pipeline": [
+    "1. Data Loading",
+    "2. Feature Engineering",
+    "3. Categorical Encoding",
+    "4. Data Splitting (70/15/15)",
+    "5. Feature Scaling (Robust + Standard)",
+    "6. Feature Selection (variance_correlation)",
+    "7. Save Processed Data"
+  ],
+  "data_splits": {
+    "train": {
+      "samples": 71233,
+      "features": 69,
+      "target_distribution": {
+        "NO": 38403,
+        ">30": 24880,
+        "<30": 7950
+      }
+    },
+    "validation": {
+      "samples": 15268,
+      "features": 69
+    },
+    "test": {
+      "samples": 15265,
+      "features": 69
+    }
+  },
+  "feature_engineering": {
+    "original_features": 50,
+    "after_encoding": 93,
+    "after_selection": 69,
+    "final_features": 69
+  },
+  "scaling": {
+    "robust_scaler": {
+      "features": [
+        "time_in_hospital",
+        "num_lab_procedures",
+        "num_procedures",
+        "num_medications",
+        "number_outpatient",
+        "number_emergency",
+        "number_inpatient",
+        "number_diagnoses",
+        "total_medications",
+        "total_visits",
+        "medication_changes_count",
+        "medication_diversity",
+        "visit_diversity",
+        "resource_utilization_score",
+        "clinical_complexity_score",
+        "treatment_complexity_score",
+        "complex_patient_score"
+      ],
+      "count": 17
+    },
+    "standard_scaler": {
+      "features": [
+        "metformin",
+        "pioglitazone",
+        "rosiglitazone",
+        "acarbose",
+        "miglitol",
+        "troglitazone",
+        "citoglipton",
+        "insulin",
+        "metformin-rosiglitazone",
+        "metformin-pioglitazone",
+        "comorbidity_score",
+        "comorbidity_low",
+        "comorbidity_medium",
+        "comorbidity_high",
+        "has_secondary_diagnosis",
+        "has_tertiary_diagnosis",
+        "multiple_diagnoses",
+        "lab_intensity_low",
+        "lab_intensity_medium",
+        "lab_intensity_high",
+        "procedure_lab_ratio",
+        "medication_up_count",
+        "medication_down_count",
+        "poly_pharmacy",
+        "medication_intensity_low",
+        "medication_intensity_medium",
+        "medication_intensity_high",
+        "insulin_dependent",
+        "insulin_increased",
+        "on_metformin",
+        "oral_agents_only",
+        "diabetesMed_binary",
+        "medication_changed",
+        "los_short",
+        "los_medium",
+        "los_long",
+        "los_very_long",
+        "frequent_visitor",
+        "has_emergency_visit",
+        "multiple_emergency",
+        "has_outpatient_visit",
+        "has_inpatient_history",
+        "frequent_inpatient",
+        "utilization_low",
+        "utilization_high",
+        "age_numeric",
+        "age_young",
+        "age_middle",
+        "age_senior",
+        "age_elderly",
+        "gender_male",
+        "gender_female",
+        "race_caucasian",
+        "race_african_american",
+        "race_hispanic",
+        "race_asian",
+        "race_other",
+        "age_comorbidity_interaction",
+        "age_medication_interaction",
+        "insulin_age_interaction",
+        "los_procedures_interaction",
+        "medication_comorbidity_interaction",
+        "emergency_age_interaction",
+        "complex_patient",
+        "medical_specialty_encoded",
+        "diag_1_encoded",
+        "diag_2_encoded",
+        "diag_3_encoded",
+        "payer_code_encoded",
+        "race_encoded",
+        "age_encoded",
+        "weight_encoded"
+      ],
+      "count": 72
+    }
+  },
+  "feature_selection": {
+    "method": "variance_correlation",
+    "description": "Variance (threshold=0.01) + Correlation (threshold=0.9)",
+    "original_features": 93,
+    "selected_features": 69,
+    "reduction_percentage": 25.806451612903224,
+    "variance_threshold": 0.01,
+    "correlation_threshold": 0.9,
+    "pca_variance_retained": null,
+    "pca_explained_variance": null,
+    "removed_features_count": 24
+  }
+}

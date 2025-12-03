@@ -1,0 +1,100 @@
+{
+    "dataset_info": {
+        "shape": [
+            101766,
+            50
+        ],
+        "total_patients": 101766,
+        "total_features": 50,
+        "numerical_features": 9,
+        "categorical_features": 37,
+        "missing_values_count": 181168,
+        "duplicate_rows": 0,
+        "memory_usage_mb": 220.2158260345459
+    },
+    "target_distribution": {
+        "NO": 54864,
+        ">30": 35545,
+        "<30": 11357
+    },
+    "missing_values": {
+        "max_glu_serum": 94.74677200636755,
+        "A1Cresult": 83.27732248491637
+    },
+    "high_cardinality_features": {
+        "payer_code": 18,
+        "medical_specialty": 73,
+        "diag_1": 717,
+        "diag_2": 749,
+        "diag_3": 790
+    },
+    "numerical_features": [
+        "patient_nbr",
+        "time_in_hospital",
+        "num_lab_procedures",
+        "num_procedures",
+        "num_medications",
+        "number_outpatient",
+        "number_emergency",
+        "number_inpatient",
+        "number_diagnoses"
+    ],
+    "categorical_features": [
+        "race",
+        "gender",
+        "age",
+        "weight",
+        "payer_code",
+        "medical_specialty",
+        "diag_1",
+        "diag_2",
+        "diag_3",
+        "max_glu_serum",
+        "A1Cresult",
+        "metformin",
+        "repaglinide",
+        "nateglinide",
+        "chlorpropamide",
+        "glimepiride",
+        "acetohexamide",
+        "glipizide",
+        "glyburide",
+        "tolbutamide",
+        "pioglitazone",
+        "rosiglitazone",
+        "acarbose",
+        "miglitol",
+        "troglitazone",
+        "tolazamide",
+        "examide",
+        "citoglipton",
+        "insulin",
+        "glyburide-metformin",
+        "glipizide-metformin",
+        "glimepiride-pioglitazone",
+        "metformin-rosiglitazone",
+        "metformin-pioglitazone",
+        "change",
+        "diabetesMed",
+        "readmitted"
+    ],
+    "medication_columns": [
+        "metformin",
+        "repaglinide",
+        "nateglinide",
+        "chlorpropamide",
+        "glimepiride",
+        "glipizide",
+        "glyburide",
+        "tolbutamide",
+        "pioglitazone",
+        "rosiglitazone",
+        "acarbose",
+        "insulin",
+        "glyburide-metformin",
+        "glipizide-metformin",
+        "glimepiride-pioglitazone",
+        "metformin-rosiglitazone",
+        "metformin-pioglitazone"
+    ]
+}
