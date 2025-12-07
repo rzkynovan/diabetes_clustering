@@ -1,0 +1,2 @@
+Algorithm,n_clusters,train_silhouette,val_silhouette,train_db,val_db,train_ch,val_ch,train_ari,val_ari,train_nmi,val_nmi,learning_rate,update_interval,cluster_reg_weight,epochs,final_loss,train_cluster_sizes,val_cluster_sizes
+DEC,3,-0.000711066,0.23365156,199.1098651492291,2.3091852248339904,0.876087960393743,1703.6022256943318,0.01005950875866581,0.013316109389861618,0.006782564420843838,0.007485019396266293,5e-05,280,0.15,146,0.06552444888432393,"{0: 39708, 1: 21446, 2: 10079}","{0: 8559, 1: 4543, 2: 2166}"

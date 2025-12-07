@@ -1,0 +1,94 @@
+% LaTeX Tables untuk Paper - Clustering Diabetes
+% Dihasilkan secara otomatis dari Notebook 04b
+
+% ============================================================
+% TABEL 1: PERBANDINGAN PERFORMA METODE CLUSTERING
+% ============================================================
+
+\begin{table}[htbp]
+\centering
+\caption{Perbandingan Performa Metode Clustering pada Dataset Diabetes}
+\label{tab:clustering_performance}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Metode} & \textbf{Fitur} & \textbf{k} & \textbf{Silhouette} & \textbf{Davies-Bouldin} & \textbf{Calinski-H.} & \textbf{Peningkatan} \\
+\midrule
+K-Means (Baseline) & 69 fitur asli & 2 & 0.223 & 2.330 & 5026 & — \\
+K-Means (Latent, k=2) & 16 fitur laten & 2 & 0.437 & 1.257 & 18070 & +96.0\% \\
+\textbf{K-Means (Latent, k=3)} & 16 fitur laten & 3 & \textbf{0.470} & \textbf{1.029} & \textbf{20321} & \textbf{+110.8\%} \\
+K-Means (Latent, k=4) & 16 fitur laten & 4 & 0.440 & 0.897 & 17869 & +97.3\% \\
+K-Means (Latent, k=5) & 16 fitur laten & 5 & 0.458 & 0.852 & 17484 & +105.4\% \\
+DEC (k=3) & 16 fitur laten (fine-tuned) & 3 & 0.234 & 2.309 & 1704 & +4.8\% \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Catatan: Nilai Silhouette yang lebih tinggi dan Davies-Bouldin yang lebih rendah menunjukkan kualitas clustering yang lebih baik. K-Means (Latent, k=3) merupakan metode terbaik dengan peningkatan 110.8\% dibanding baseline.
+\end{tablenotes}
+\end{table}
+
+
+% ============================================================
+% TABEL 2: KARAKTERISTIK CLUSTER
+% ============================================================
+
+\begin{table}[htbp]
+\centering
+\caption{Karakteristik Tiga Cluster Pasien Diabetes (K-Means Latent, k=3)}
+\label{tab:cluster_characteristics}
+\begin{tabular}{clrrr}
+\toprule
+\textbf{Cluster} & \textbf{Label Klinis} & \textbf{Ukuran} & \textbf{Persentase} & \textbf{Tingkat Readmisi} \\
+\midrule
+C0 & Standard Care (Lower Complexity) & 70,631 & 81.7\% & 0.46\% \\
+C1 & Medication-Adjusted Care & 10,583 & 12.2\% & 0.47\% \\
+C2 & Extended Hospital Stay & 5,287 & 6.1\% & 0.46\% \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Catatan: Uji Chi-square menunjukkan tidak ada perbedaan signifikan dalam tingkat readmisi antar cluster ($p=0.064$). Cluster merepresentasikan fenotipe kompleksitas perawatan, bukan stratifikasi risiko readmisi.
+\end{tablenotes}
+\end{table}
+
+
+% ============================================================
+% TABEL 3: FITUR PEMBEDA UTAMA PER CLUSTER
+% ============================================================
+
+\begin{table}[htbp]
+\centering
+\caption{Lima Fitur Pembeda Utama untuk Setiap Cluster}
+\label{tab:top_features}
+\small
+\begin{tabular}{clccp{5cm}}
+\toprule
+\textbf{Cluster} & \textbf{Fitur} & \textbf{Perbedaan} & \textbf{Cohen's d} & \textbf{Interpretasi} \\
+\midrule
+\multicolumn{5}{l}{\textbf{C0: Standard Care (Lower Complexity)}} \\
+ & lab\_intensity\_medium & -0.336 & -0.307 & ↓ Lebih rendah \\
+ & citoglipton & -0.291 & -0.277 & ↓ Lebih rendah \\
+ & los\_long & -0.245 & -0.219 & ↓ Lebih rendah \\
+ & medication\_down\_count & -0.166 & -0.166 & ↓ Lebih rendah \\
+ & procedure\_lab\_ratio & -0.165 & -0.166 & ↓ Lebih rendah \\
+\midrule
+\multicolumn{5}{l}{\textbf{C1: Medication-Adjusted Care}} \\
+ & lab\_intensity\_medium & +0.467 & 0.407 & ↑ Lebih tinggi \\
+ & citoglipton & +0.371 & 0.344 & ↑ Lebih tinggi \\
+ & clinical\_complexity\_score & -0.233 & -0.187 & ↓ Lebih rendah \\
+ & medication\_down\_count & +0.227 & 0.228 & ↑ Lebih tinggi \\
+ & procedure\_lab\_ratio & +0.188 & 0.190 & ↑ Lebih tinggi \\
+\midrule
+\multicolumn{5}{l}{\textbf{C2: Extended Hospital Stay}} \\
+ & los\_long & +0.714 & 0.517 & ↑ Lebih tinggi \\
+ & los\_medium & -0.440 & -0.387 & ↓ Lebih rendah \\
+ & resource\_utilization\_score & -0.319 & -0.300 & ↓ Lebih rendah \\
+ & frequent\_visitor & -0.173 & -0.176 & ↓ Lebih rendah \\
+ & utilization\_high & -0.125 & -0.157 & ↓ Lebih rendah \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Catatan: Perbedaan menunjukkan rata-rata terstandarisasi cluster dibanding cluster lainnya. Cohen's d mengindikasikan ukuran efek (|d| $\geq$ 0.2: kecil, $\geq$ 0.5: sedang, $\geq$ 0.8: besar). Semua perbedaan signifikan secara statistik ($p < 0.001$).
+\end{tablenotes}
+\end{table}

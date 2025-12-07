@@ -1,0 +1,7 @@
+Algorithm,Features,n_clusters,val_silhouette,val_db,val_ch,notes,improvement_vs_baseline
+K-Means (Latent),16 latent features,3,0.47,1.029,20321.49,Best performer - MAIN RESULT,110.76
+K-Means (Latent),16 latent features,5,0.458,0.852,17484.27,K-Means on latent space,105.38
+K-Means (Latent),16 latent features,4,0.44,0.897,17869.2,K-Means on latent space,97.31
+K-Means (Latent),16 latent features,2,0.437,1.257,18070.25,K-Means on autoencoder latent space,95.96
+DEC (Deep Clustering),16 latent features (finetuned),3,0.2336515635251999,2.3091852248339904,1703.6022256943318,"Deep clustering, 146 epochs",4.78
+K-Means (Baseline),69 original features,2,0.223,2.33,5026.19,Baseline on original features,0.0
