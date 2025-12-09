@@ -1,9 +1,8 @@
 # Multi-Perspective Ensemble Deep Clustering for Diabetes Patient Stratification
 
 **Author**: Novan  
-**Institution**: [Your University]  
-**Course**: Unsupervised Machine Learning  
-**Target**: IEEE Publication
+**Institution**: Institut Teknologi Sepuluh Nopember
+**Course**: Unsupervised Machine Learning
 
 ## 🎯 Project Overview
 
@@ -26,4 +25,3 @@ This project implements a novel multi-perspective ensemble deep clustering frame
 - Features: 50+ clinical, treatment, and administrative attributes
 - Target: Hospital readmission (<30 days, >30 days, No)
 
-## 🏗️ Project Structure
